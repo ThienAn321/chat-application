@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.24.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1720599561894-15" author="Admin (generated)">
+        <sqlFile dbms="!h2, mariadb, mysql" encoding="UTF-8"
+                 endDelimiter=";" path="database/sql/init_master_data.sql"
+                 relativeToChangelogFile="false" splitStatements="true"
+                 stripComments="true" />
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,30 @@
+@import './index.scss';
+
+// add user
+@import './addUser/addUser.scss';
+
+// auth
+@import './auth/auth.scss';
+@import './auth/login.scss';
+@import './auth/register.scss';
+
+// chat content
+@import './chatContent/chat.scss';
+
+// chat list
+@import './chatList/chatList.scss';
+
+// common
+@import './common/messageArea.scss';
+@import './common/messageInput.scss';
+@import './common/searchBar.scss';
+@import './common/userInfoChat.scss';
+
+// list
+@import './list/list.scss';
+
+// user info
+@import './userInfo/userInfo.scss';
+
+// user list
+@import './userList/userItem.scss';

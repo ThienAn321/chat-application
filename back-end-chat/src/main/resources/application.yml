@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: back-end-chat
+  datasource:
+    url: jdbc:mysql://localhost:3306/chat_application?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=UTF8&characterSetResults=UTF8&allowPublicKeyRetrieval=true&useSSL=false
+    username: root
+    password: 123456
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQL8Dialect
+
+  liquibase:
+    change-log: classpath:database/master.xml
+
+security:
+  jwt:
+    secret: 4a3d4c56997e8a753d7c7eb2ca7a22411bd76280c441f0da1e3376e4312aa2c9
+    token-expiration: 1800000
+    refresh-token-expiration: 3600000

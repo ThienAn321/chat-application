@@ -1,0 +1,7 @@
+{
+  "apiBaseUrl": {
+    "url": "http://localhost:8080",
+    "public": "/api/v1/public",
+    "private": "/api/v1/private"
+  }
+}

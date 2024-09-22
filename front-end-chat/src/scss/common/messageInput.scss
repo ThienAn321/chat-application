@@ -1,0 +1,41 @@
+.icons {
+  display: flex;
+  gap: 20px;
+}
+
+img {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.message-input {
+  flex: 1;
+  background-color: rgba(17, 25, 40, 0.5);
+  border: none;
+  outline: none;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+.send-btn {
+  background-color: #5183fe;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.emoji {
+  position: relative;
+
+  .emoji-picker {
+    position: absolute;
+    right: 0;
+    bottom: 50px;
+  }
+}
+

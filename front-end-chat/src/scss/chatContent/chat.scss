@@ -1,0 +1,35 @@
+.chat {
+  flex: 2.5;
+  border-left: 1px solid #dddddd35;
+  border-right: 1px solid #dddddd35;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.top {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #dddddd35;
+}
+
+.center {
+  flex: 1;
+  padding: 20px;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.bottom {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #dddddd35;
+  gap: 20px;
+  margin-top: 20px;
+}
