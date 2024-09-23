@@ -30,7 +30,7 @@ Backend:
 ## Getting started with Frontend
 Ensure you have Node.js version >= 20.17 installed.
 
-> *_Warning:_* If you have Node.js version <= 20.17: You may need to uninstall your current Node.js version and install Node.js >= 20.17. Alternatively, you can use NVM (Node Version Manager) to switch between versions.
+> *_Warning:_* If you have Node.js version < 20.17: You may need to uninstall your current Node.js version and install Node.js >= 20.17. Alternatively, you can use NVM (Node Version Manager) to switch between versions.
 #### Using NVM (Node Version Manager) to switch between Node.js versions (optional):
 - Uninstall your current Node.js version (note the version if you need to reinstall it later).
 - Download and install nvm-setup.exe (any version) from [this GitHub repository](https://github.com/coreybutler/nvm-windows/releases).
