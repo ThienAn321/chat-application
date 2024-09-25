@@ -4,6 +4,7 @@ import { Theme } from 'emoji-picker-react';
 import { sendMessage } from '../../utils/webSocketClient';
 import { useChatRoom } from '../../context/ChatRoomContext';
 import uploadImage from '../../utils/uploadImage';
+import { toast } from 'react-toastify';
 
 const MessageInput = () => {
   const [open, setOpen] = useState<boolean>(false);
@@ -51,6 +52,10 @@ const MessageInput = () => {
     isImage: boolean = false,
     imageUrl?: string
   ): void => {
+    if (!text) {
+      toast.warn('Please enter your messages');
+      return;
+    }
     if (stompClient && selectedChatRoom) {
       const message = {
         chatRoomId: selectedChatRoom.chatRoomId,
