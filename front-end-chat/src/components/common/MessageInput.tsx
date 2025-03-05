@@ -6,7 +6,15 @@ import { useChatRoom } from '../../context/ChatRoomContext';
 import uploadImage from '../../utils/uploadImage';
 import { toast } from 'react-toastify';
 
-const MessageInput = () => {
+interface IMessageInputProps {
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  setProgress: React.Dispatch<React.SetStateAction<number>>;
+}
+
+const MessageInput: React.FC<IMessageInputProps> = ({
+  setLoading,
+  setProgress,
+}) => {
   const [open, setOpen] = useState<boolean>(false);
   const [text, setText] = useState<string>('');
   const emojiPickerRef = useRef<HTMLDivElement | null>(null);
@@ -52,7 +60,7 @@ const MessageInput = () => {
     isImage: boolean = false,
     imageUrl?: string
   ): void => {
-    if (!text) {
+    if (!isImage && !text) {
       toast.warn('Please enter your messages');
       return;
     }
@@ -69,18 +77,60 @@ const MessageInput = () => {
     }
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>): void => {
     if (e.key === 'Enter') {
       e.preventDefault();
       handleSendMessage(false);
     }
   };
 
-  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileUpload = async (file: File): Promise<void> => {
+    setLoading(true);
+    setProgress(0);
+    const imageUrl = await uploadImage(file, setProgress);
+    setLoading(false);
+    handleSendMessage(true, imageUrl);
+  };
+
+  const handleFileUploadChange = async (
+    e: React.ChangeEvent<HTMLInputElement>
+  ): Promise<void> => {
     const file = e.target.files?.[0];
     if (file) {
-      const imageUrl = await uploadImage(file);
-      handleSendMessage(true, imageUrl);
+      handleFileUpload(file);
+      // Reset the file input to allow the same file to be selected again
+      e.target.value = '';
+    }
+  };
+
+  const handleDrop = async (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    const file = e.dataTransfer.files[0];
+    if (
+      file &&
+      (file.type.startsWith('image/') ||
+        file.type === 'application/pdf' ||
+        file.type ===
+          'application/vnd.openxmlformats-officedocument.wordprocessingml.document' ||
+        file.type ===
+          'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' ||
+        file.type === 'application/msword' ||
+        file.type === 'application/vnd.ms-excel')
+    ) {
+      handleFileUpload(file);
+    }
+  };
+
+  const handlePaste = async (e: React.ClipboardEvent<HTMLInputElement>) => {
+    const items = e.clipboardData.items;
+    for (let i = 0; i < items.length; i++) {
+      const item = items[i];
+      if (item.kind === 'file' && item.type.startsWith('image/')) {
+        const file = item.getAsFile();
+        if (file) {
+          handleFileUpload(file);
+        }
+      }
     }
   };
 
@@ -94,10 +144,13 @@ const MessageInput = () => {
           type="file"
           id="file"
           style={{ display: 'none' }}
-          onChange={handleImageUpload}
+          onChange={handleFileUploadChange}
         />
       </div>
       <input
+        onDrop={handleDrop}
+        onDragOver={(e) => e.preventDefault()}
+        onPaste={handlePaste}
         className="message-input"
         type="text"
         placeholder="Type a message..."

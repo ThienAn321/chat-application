@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 @EntityListeners(AuditingEntityListener.class)
 @SuperBuilder
 @NoArgsConstructor
-public class AbstractAuditingEntity {
+public abstract class AbstractAuditingEntity {
 
     @CreatedDate
     @Column(name = "created_at", updatable = false)

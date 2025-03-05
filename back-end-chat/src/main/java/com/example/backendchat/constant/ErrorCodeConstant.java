@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 
 import java.text.MessageFormat;
 
-@Getter
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ErrorCodeConstant {
 
